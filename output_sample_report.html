@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>sample_book · 拆书报告</title>
+<script src="https://cdn.jsdelivr.net/npm/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+<style>
+  :root{--bg:#0f0f1a;--card:#1e1e2e;--accent:#7c3aed;--text:#e5e7eb;--muted:#9ca3af}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;line-height:1.7}
+  .wrap{max-width:1100px;margin:0 auto;padding:32px 20px}
+  h1{font-size:2.2em;background:linear-gradient(90deg,#a78bfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
+  h2{border-left:4px solid var(--accent);padding-left:12px;margin-top:48px;font-size:1.4em}
+  h3{color:#c4b5fd;margin:20px 0 8px}
+  .overview{background:var(--card);border-radius:12px;padding:20px 24px;border:1px solid #2d2d44}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:16px}
+  .card{background:var(--card);border-radius:14px;padding:18px;border:1px solid #2d2d44;transition:transform .2s,border-color .2s}
+  .card:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .card-theme{font-size:.75em;color:var(--accent);text-transform:uppercase;letter-spacing:.05em}
+  .card-title{font-weight:700;font-size:1.05em;margin:6px 0}
+  .card-content{color:var(--text);font-size:.92em}
+  .card-insight{color:#fbbf24;font-size:.88em;margin-top:8px;border-top:1px dashed #3d3d55;padding-top:8px}
+  .card-meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .chapter{color:var(--muted);font-size:.78em}
+  .tag{background:#2d2d44;color:#a5b4fc;padding:1px 8px;border-radius:10px;font-size:.72em}
+  .uid{color:var(--accent);font-family:monospace;font-size:.8em}
+  .uchap{color:var(--muted);font-size:.8em}
+  ul{list-style:none;padding-left:0}
+  li{padding:5px 0;border-bottom:1px solid #1a1a2e}
+  .skill{background:var(--card);border-radius:12px;padding:16px 20px;margin:12px 0;border:1px solid #2d2d44}
+  .skill .trigger{color:#60a5fa;font-size:.88em}
+  .skill .principle{color:#34d399;font-size:.88em}
+  .skill .example{color:#f59e0b;font-size:.85em;font-style:italic}
+  ol{padding-left:20px}
+  #graph{height:600px;background:#16162a;border-radius:12px;border:1px solid #2d2d44;margin-top:12px}
+  .stat{display:inline-block;background:var(--card);padding:8px 16px;border-radius:10px;margin:4px;border:1px solid #2d2d44}
+  .stat b{color:var(--accent);font-size:1.3em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>sample_book</h1>
+  <p style="color:var(--muted)">集百家之所长的 AI 拆书报告 · 中文</p>
+  <div>
+    <span class="stat">知识单元 <b>915</b></span>
+    <span class="stat">主题聚类 <b>2</b></span>
+    <span class="stat">技能 <b>1</b></span>
+  </div>
+
+  <h2>全书总结</h2>
+  <div class="overview">{&quot;units&quot;: [{&quot;content&quot;: &quot;复利是本金生息后利息再投入的指数增长过程&quot;, &quot;tags&quot;: [&quot;复利&quot;, &quot;增长&quot;]}, {&quot;content&quot;: &quot;时间是复利发挥威力的关键因素&quot;, &quot;tags&quot;: [&quot;时间&quot;, &quot;复利&quot;]}]}</div>
+
+  <h2>知识图谱</h2>
+  <div id="graph"></div>
+
+  <h2>核心概念卡片</h2>
+  <div class="cards">
+    <div class="card" data-theme="主题1·复利">
+      <div class="card-theme">主题1·复利</div>
+      <div class="card-title">复利是本金生息后利息再投入的指数增长过程</div>
+      <div class="card-content">复利是本金生息后利息再投入的指数增长过程</div>
+      <div class="card-insight">{"units": [{"content": "复利是本金生息后利息再投入的指数增长过程", "tags": ["复利", "增长"]}, {"content": "时间是复利发挥威力的关键因素", "tags": ["时间", "复利"]}]}</div>
+      <div class="card-meta">
+        <span class="chapter">第一章 复利的本质</span>
+        <span class="tag">复利</span><span class="tag">增长</span>
+      </div>
+    </div>
+
+    <div class="card" data-theme="主题2·时间">
+      <div class="card-theme">主题2·时间</div>
+      <div class="card-title">时间是复利发挥威力的关键因素</div>
+      <div class="card-content">时间是复利发挥威力的关键因素</div>
+      <div class="card-insight">{"units": [{"content": "复利是本金生息后利息再投入的指数增长过程", "tags": ["复利", "增长"]}, {"content": "时间是复利发挥威力的关键因素", "tags": ["时间", "复利"]}]}</div>
+      <div class="card-meta">
+        <span class="chapter">第一章 复利的本质</span>
+        <span class="tag">时间</span><span class="tag">复利</span>
+      </div>
+    </div>
+
+    <div class="card" data-theme="主题1·复利">
+      <div class="card-theme">主题1·复利</div>
+      <div class="card-title">复利是本金生息后利息再投入的指数增长过程</div>
+      <div class="card-content">复利是本金生息后利息再投入的指数增长过程</div>
+      <div class="card-insight">{"units": [{"content": "复利是本金生息后利息再投入的指数增长过程", "tags": ["复利", "增长"]}, {"content": "时间是复利发挥威力的关键因素", "tags": ["时间", "复利"]}]}</div>
+      <div class="card-meta">
+        <span class="chapter">第二章 习惯的复利</span>
+        <span class="tag">复利</span><span class="tag">增长</span>
+      </div>
+    </div>
+
+    <div class="card" data-theme="主题2·时间">
+      <div class="card-theme">主题2·时间</div>
+      <div class="card-title">时间是复利发挥威力的关键因素</div>
+      <div class="card-content">时间是复利发挥威力的关键因素</div>
+      <div class="card-insight">{"units": [{"content": "复利是本金生息后利息再投入的指数增长过程", "tags": ["复利", "增长"]}, {"content": "时间是复利发挥威力的关键因素", "tags": ["时间", "复利"]}]}</div>
+      <div class="card-meta">
+        <span class="chapter">第二章 习惯的复利</span>
+        <span class="tag">时间</span><span class="tag">复利</span>
+      </div>
+    </div></div>
+
+  <h2>各章要点</h2>
+  <h3>第一章 复利的本质</h3><p>{&quot;units&quot;: [{&quot;content&quot;: &quot;复利是本金生息后利息再投入的指数增长过程&quot;, &quot;tags&quot;: [&quot;复利&quot;, &quot;增长&quot;]}, {&quot;content&quot;: &quot;时间是复利发挥威力的关键因素&quot;, &quot;tags&quot;: [&quot;时间&quot;, &quot;复利&quot;]}]}</p>
+<h3>第二章 习惯的复利</h3><p>{&quot;units&quot;: [{&quot;content&quot;: &quot;复利是本金生息后利息再投入的指数增长过程&quot;, &quot;tags&quot;: [&quot;复利&quot;, &quot;增长&quot;]}, {&quot;content&quot;: &quot;时间是复利发挥威力的关键因素&quot;, &quot;tags&quot;: [&quot;时间&quot;, &quot;复利&quot;]}]}</p>
+<h3>第三章 人际关系的复利</h3><p>{&quot;units&quot;: [{&quot;content&quot;: &quot;复利是本金生息后利息再投入的指数增长过程&quot;, &quot;tags&quot;: [&quot;复利&quot;, &quot;增长&quot;]}, {&quot;content&quot;: &quot;时间是复利发挥威力的关键因素&quot;, &quot;tags&quot;: [&quot;时间&quot;, &quot;复利&quot;]}]}</p>
+
+  <h2>可执行技能包</h2>
+  <div class="skill"><h3>复利思维决策</h3>
+        <p class="trigger">触发：做长期决策时</p>
+        <p class="principle">原理：微小持续的努力产生指数增长</p>
+        <ol><li>评估时间维度</li><li>关注持续改进</li></ol>
+        <p class="example">示例：每天学习1小时</p></div>
+
+  <h2>知识单元全表</h2>
+  <ul><li><span class="uid">u0000</span> <span class="uchap">[第一章 复利的本质]</span> 复利是本金生息后利息再投入的指数增长过程 <span class="tag">复利</span><span class="tag">增长</span></li>
+<li><span class="uid">u0001</span> <span class="uchap">[第一章 复利的本质]</span> 时间是复利发挥威力的关键因素 <span class="tag">时间</span><span class="tag">复利</span></li>
+<li><span class="uid">u0002</span> <span class="uchap">[第二章 习惯的复利]</span> 复利是本金生息后利息再投入的指数增长过程 <span class="tag">复利</span><span class="tag">增长</span></li>
+<li><span class="uid">u0003</span> <span class="uchap">[第二章 习惯的复利]</span> 时间是复利发挥威力的关键因素 <span class="tag">时间</span><span class="tag">复利</span></li>
+<li><span class="uid">u0004</span> <span class="uchap">[第三章 人际关系的复利]</span> 复利是本金生息后利息再投入的指数增长过程 <span class="tag">复利</span><span class="tag">增长</span></li>
+<li><span class="uid">u0005</span> <span class="uchap">[第三章 人际关系的复利]</span> 时间是复利发挥威力的关键因素 <span class="tag">时间</span><span class="tag">复利</span></li></ul>
+</div>
+<script>
+  const nodes = new vis.DataSet([{"id": "u0000", "label": "复利是本金生息后利息再投入的指数增长过程", "group": "主题1·复利", "size": 32}, {"id": "u0001", "label": "时间是复利发挥威力的关键因素", "group": "主题2·时间", "size": 32}, {"id": "u0002", "label": "复利是本金生息后利息再投入的指数增长过程", "group": "主题1·复利", "size": 32}, {"id": "u0003", "label": "时间是复利发挥威力的关键因素", "group": "主题2·时间", "size": 32}, {"id": "u0004", "label": "复利是本金生息后利息再投入的指数增长过程", "group": "主题1·复利", "size": 32}, {"id": "u0005", "label": "时间是复利发挥威力的关键因素", "group": "主题2·时间", "size": 32}]);
+  const edges = new vis.DataSet([{"from": "u0000", "to": "u0002", "width": 2.5}, {"from": "u0000", "to": "u0004", "width": 2.5}, {"from": "u0001", "to": "u0003", "width": 2.5}, {"from": "u0001", "to": "u0005", "width": 2.5}, {"from": "u0002", "to": "u0004", "width": 2.5}, {"from": "u0003", "to": "u0005", "width": 2.5}]);
+  new vis.Network(document.getElementById('graph'), {nodes, edges}, {
+    physics:{barnesHut:{gravitationalConstant:-8000,centralGravity:.3,springLength:120,damping:.4}},
+    nodes:{shape:'dot',font:{color:'#e5e7eb',face:'sans-serif'}},
+    edges:{color:'#3d3d55'},
+    interaction:{hover:true}
+  });
+</script>
+</body>
+</html>
